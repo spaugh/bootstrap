@@ -124,7 +124,6 @@ if exists("+showtabline")
 endif
 
 "quick search for Spiral code
-"quick search for Spiral code
 nmap py :execute ":vimgrep /" . input("search[python/]: ") . "/j ~/repo/spiral/python/**/*.py" <Bar> cw<CR>
-nmap sc << :execute ":vimgrep /" . input("search[modules/]: ") . "/j ~/repo/spiral/modules/**/*.cpp" <Bar> cw<CR>
+nmap sc :execute ":vimgrep /" . input("search[modules/]: ") . "/j ~/repo/spiral/modules/**/*.cpp" <Bar> cw<CR>
 nmap sh :execute ":vimgrep /" . input("search[modules/]: ") . "/j ~/repo/spiral/modules/**/*.h" <Bar> cw<CR>
