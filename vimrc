@@ -10,15 +10,10 @@ call vundle#rc()
 "My bundles:
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'kchmck/vim-coffee-script'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
-Bundle 'maksimr/vim-jsbeautify'
 Bundle 'ervandew/supertab'
-
 
 " without this, backspace will sometimes not work at eol 
 set backspace=indent,eol,start
