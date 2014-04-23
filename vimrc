@@ -15,11 +15,11 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'ervandew/supertab'
 
-" without this, backspace will sometimes not work at eol 
+" without this, backspace will sometimes not work at eol
 set backspace=indent,eol,start
 
 set autoread
-au! CursorMoved * checktime 
+au! CursorMoved * checktime
 au! CursorMovedI * checktime
 
 "set tabs to 4 spaces
@@ -66,6 +66,7 @@ nmap <silent> <C-n> :noh<CR>
 
 "~~~~~~ Abbreviations ~~~~~~~
 imap kj <Esc> :w <CR>
+nmap rw :%s/\s\+$//<CR>
 
 " C++ abbrev
 ia ic #include <Left>
