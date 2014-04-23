@@ -22,9 +22,10 @@ set autoread
 au! CursorMoved * checktime
 au! CursorMovedI * checktime
 
-"set tabs to 4 spaces
+"set tabs to 4 spaces unless we're in an html file
 set tabstop=4
 set shiftwidth=4
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
 
 "turn on search highlighting
 set hlsearch
