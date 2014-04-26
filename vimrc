@@ -28,7 +28,7 @@ set shiftwidth=4
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 
 "turn on search highlighting
-set hlsearch
+set hls is ic scs 
 
 "Turn syntax highlighting on - 'enable' allows custom highling
 syntax enable
@@ -68,6 +68,9 @@ nmap <silent> <C-n> :noh<CR>
 "~~~~~~ Abbreviations ~~~~~~~
 imap kj <Esc> :w <CR>
 nmap rw :%s/\s\+$//<CR>
+nmap gb gT
+nmap <C-k> :bd <CR>
+nmap <leader>py :execute ":vimgrep /" . input("search[python/]: ") . "/j ~/repo/bitstrap/**/*.py" <Bar> cw<CR>
 
 " C++ abbrev
 ia ic #include <Left>
@@ -126,6 +129,5 @@ if exists("+showtabline")
 endif
 
 "quick search for Spiral code
-nmap py :execute ":vimgrep /" . input("search[python/]: ") . "/j ~/repo/spiral/python/**/*.py" <Bar> cw<CR>
-nmap sc :execute ":vimgrep /" . input("search[modules/]: ") . "/j ~/repo/spiral/modules/**/*.cpp" <Bar> cw<CR>
-nmap sh :execute ":vimgrep /" . input("search[modules/]: ") . "/j ~/repo/spiral/modules/**/*.h" <Bar> cw<CR>
+nmap <leader>sc :execute ":vimgrep /" . input("search[modules/]: ") . "/j ~/repo/spiral/modules/**/*.cpp" <Bar> cw<CR>
+nmap <leader>sh :execute ":vimgrep /" . input("search[modules/]: ") . "/j ~/repo/spiral/modules/**/*.h" <Bar> cw<CR>
