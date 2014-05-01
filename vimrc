@@ -4,6 +4,9 @@ set nocompatible
 filetype on
 filetype off
 
+"Turn syntax highlighting on - 'enable' allows custom highling
+syntax enable
+
 set rtp+=~/.vim/bundle/vundle
 if filereadable(expand("~/.vim/bundle/vundle/README.md"))
 	call vundle#rc()
@@ -16,7 +19,6 @@ if filereadable(expand("~/.vim/bundle/vundle/README.md"))
 	Bundle 'ervandew/supertab'
 
 	"Set solarized colorscheme
-	set background=dark
 	colorscheme solarized
 endif
 
@@ -35,8 +37,6 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 "turn on search highlighting
 set hls is ic scs 
 
-"Turn syntax highlighting on - 'enable' allows custom highling
-syntax enable
 
 "Turn on language specific indenting
 filetype plugin indent on
