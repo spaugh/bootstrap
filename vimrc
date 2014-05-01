@@ -14,6 +14,10 @@ if filereadable(expand("~/.vim/bundle/vundle/README.md"))
 	Bundle 'scrooloose/nerdcommenter'
 	Bundle 'scrooloose/nerdtree'
 	Bundle 'ervandew/supertab'
+
+	"Set solarized colorscheme
+	set background=dark
+	colorscheme solarized
 endif
 
 " without this, backspace will sometimes not work at eol
@@ -36,10 +40,6 @@ syntax enable
 
 "Turn on language specific indenting
 filetype plugin indent on
-
-"Set solarized colorscheme
-set background=dark
-colorscheme solarized
 
 "tabs dont automatically convert to spaces
 set noexpandtab
