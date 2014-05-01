@@ -5,15 +5,16 @@ filetype on
 filetype off
 
 set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-
-"My bundles:
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'ervandew/supertab'
+if filereadable(expand("~/.vim/bundle/vundle/README.md"))
+	call vundle#rc()
+	"My bundles:
+	Bundle 'gmarik/vundle'
+	Bundle 'tpope/vim-fugitive'
+	Bundle 'altercation/vim-colors-solarized'
+	Bundle 'scrooloose/nerdcommenter'
+	Bundle 'scrooloose/nerdtree'
+	Bundle 'ervandew/supertab'
+endif
 
 " without this, backspace will sometimes not work at eol
 set backspace=indent,eol,start
