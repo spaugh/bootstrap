@@ -7,18 +7,28 @@ filetype off
 "Turn syntax highlighting on - 'enable' allows custom highling
 syntax enable
 
-set rtp+=~/.vim/bundle/vundle
-if filereadable(expand("~/.vim/bundle/vundle/README.md"))
-	call vundle#rc()
+
+if filereadable(expand("~/.vim/bundle/Vundle.vim/README.md"))
+	set rtp+=~/.vim/bundle/Vundle.vim
+
+	call vundle#begin()
+	Plugin 'gmarik/Vundle.vim'
+
 	"My bundles:
-	Bundle 'gmarik/vundle'
-	Bundle 'tpope/vim-fugitive'
-	Bundle 'altercation/vim-colors-solarized'
-	Bundle 'scrooloose/nerdcommenter'
-	Bundle 'scrooloose/nerdtree'
-	Bundle 'ervandew/supertab'
+	Plugin 'tpope/vim-fugitive'
+	Plugin 'altercation/vim-colors-solarized'
+	Plugin 'scrooloose/nerdcommenter'
+	Plugin 'scrooloose/nerdtree'
+	Plugin 'ervandew/supertab'
+	Plugin 'elzr/vim-json'
+    Plugin 'pangloss/vim-javascript'
+    Plugin 'mxw/vim-jsx'
+
+	call vundle#end()
 
 	"Set solarized colorscheme
+    syntax enable
+    set background=light
 	colorscheme solarized
 endif
 
@@ -32,17 +42,18 @@ au! CursorMovedI * checktime
 "set tabs to 4 spaces unless we're in an html file
 set tabstop=4
 set shiftwidth=4
+autocmd BufNewFile,BufRead *.hbs set filetype=html
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 
 "turn on search highlighting
-set hls is ic scs 
+set hls is ic scs
 
 
 "Turn on language specific indenting
 filetype plugin indent on
 
 "tabs dont automatically convert to spaces
-set noexpandtab
+set expandtab
 
 "search options
 set ignorecase
@@ -132,3 +143,6 @@ endif
 "quick search for Spiral code
 nmap <leader>sc :execute ":vimgrep /" . input("search[modules/]: ") . "/j ~/repo/spiral/modules/**/*.cpp" <Bar> cw<CR>
 nmap <leader>sh :execute ":vimgrep /" . input("search[modules/]: ") . "/j ~/repo/spiral/modules/**/*.h" <Bar> cw<CR>
+
+au BufEnter *.css set nocindent
+au BufLeave *.css set cindent
