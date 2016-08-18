@@ -10,6 +10,32 @@ syntax enable
 "Allow jsx indentation for non-.jsx files
 let g:jsx_ext_required = 0
 
+" Show buffers instead of tabs
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+" let g:airline#extensions#tabline#fnamemod = ':t'
+
+" This allows buffers to be hidden if you've modified a buffer.
+set hidden
+
+" To open a new empty buffer
+nmap gN :enew<cr>
+
+" Move to the next buffer
+nmap gn :bnext<CR>
+
+" Move to the previous buffer
+nmap gb :bprevious<CR>
+
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nmap gx :bp <BAR> bd #<CR>
+
+" Show all open buffers and their status
+nmap bl :ls<CR>
+
+
 if filereadable(expand("~/.vim/autoload/plug.vim"))
   call plug#begin()
 
@@ -17,6 +43,7 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   Plug 'chriskempson/base16-vim'
   Plug 'leafgarland/typescript-vim'
   Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+  Plug 'vim-airline/vim-airline'
 
 	call plug#end()
 
