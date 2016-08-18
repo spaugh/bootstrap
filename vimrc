@@ -14,15 +14,13 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   call plug#begin()
 
   "My bundles:
-  Plug 'altercation/vim-colors-solarized'
+  Plug 'chriskempson/base16-vim'
   Plug 'leafgarland/typescript-vim'
+  Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
 	call plug#end()
 
-	"Set solarized colorscheme
-    syntax enable
-    set background=light
-	colorscheme solarized
+  colorscheme base16-default-dark
 endif
 
 " without this, backspace will sometimes not work at eol
