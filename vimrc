@@ -7,24 +7,17 @@ filetype off
 "Turn syntax highlighting on - 'enable' allows custom highling
 syntax enable
 
+"Allow jsx indentation for non-.jsx files
+let g:jsx_ext_required = 0
 
-if filereadable(expand("~/.vim/bundle/Vundle.vim/README.md"))
-	set rtp+=~/.vim/bundle/Vundle.vim
+if filereadable(expand("~/.vim/autoload/plug.vim"))
+  call plug#begin()
 
-	call vundle#begin()
-	Plugin 'gmarik/Vundle.vim'
+  "My bundles:
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'leafgarland/typescript-vim'
 
-	"My bundles:
-	Plugin 'tpope/vim-fugitive'
-	Plugin 'altercation/vim-colors-solarized'
-	Plugin 'scrooloose/nerdcommenter'
-	Plugin 'scrooloose/nerdtree'
-	Plugin 'ervandew/supertab'
-	Plugin 'elzr/vim-json'
-    Plugin 'pangloss/vim-javascript'
-    Plugin 'mxw/vim-jsx'
-
-	call vundle#end()
+	call plug#end()
 
 	"Set solarized colorscheme
     syntax enable
@@ -39,15 +32,15 @@ set autoread
 au! CursorMoved * checktime
 au! CursorMovedI * checktime
 
-"set tabs to 4 spaces unless we're in an html file
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 autocmd BufNewFile,BufRead *.hbs set filetype=html
+autocmd BufNewFile,BufRead *.jsx set filetype=javascript
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 
 "turn on search highlighting
 set hls is ic scs
-
 
 "Turn on language specific indenting
 filetype plugin indent on
@@ -71,7 +64,7 @@ set ruler
 "Display the line numbers
 set number
 
-"Wrap lines if they are longer than screen width
+"Dont wrap lines if they are longer than screen width
 set nowrap
 
 "Ctrl+n to turn off highlighting
@@ -82,67 +75,3 @@ imap kj <Esc> :w <CR>
 nmap rw :%s/\s\+$//<CR>
 nmap gb gT
 nmap <C-k> :bd <CR>
-nmap <leader>py :execute ":vimgrep /" . input("search[python/]: ") . "/j ~/repo/bitstrap/**/*.py" <Bar> cw<CR>
-
-" C++ abbrev
-ia ic #include <Left>
-ia ss std::string
-ia sv std::vector<><Left>
-ia sm std::map<><Left>
-ia sd std::
-ia sc std::cout <<
-ia sp std::pair<><Left>
-
-"~~~~~ Autocommands ~~~~~~~~~
-
-"Rename tabs to show tab number.
-" (Based on http://stackoverflow.com/questions/5927952/whats-implementation-of-vims-default-tabline-function)
-if exists("+showtabline")
-	function! MyTabLine()
-		let s = ''
-		let wn = ''
-		let t = tabpagenr()
-		let i = 1
-		while i <= tabpagenr('$')
-			let buflist = tabpagebuflist(i)
-			let winnr = tabpagewinnr(i)
-			let s .= '%' .  i .  'T'
-			let s .= (i == t ?  '%1*' : '%2*')
-			let s .= ' '
-			let wn = tabpagewinnr(i,'$')
-			let s .= '%#TabNum#'
-			let s .= i
-			" let s .= '%*'
-			let s .= (i == t ?  '%#TabLineSel#' : '%#TabLine#')
-			let bufnr = buflist[winnr - 1]
-			let file = bufname(bufnr)
-			let buftype = getbufvar(bufnr, 'buftype')
-			if buftype == 'nofile'
-				if file =~ '\/.'
-					let file = substitute(file, '.*\/\ze.', '', '')
-				endif
-			else
-				let file = fnamemodify(file, ':p:t')
-			endif
-			if file == ''
-				let file = '[No Name]'
-			endif
-			let s .= ' ' .  file .  ' '
-			let i = i + 1
-		endwhile
-		let s .= '%T%#TabLineFill#%='
-		let s .= (tabpagenr('$') > 1 ?  '%999XX' : 'X')
-		return s
-	endfunction
-	set stal=2
-	set tabline=%!MyTabLine()
-	set showtabline=1
-	highlight link TabNum Special
-endif
-
-"quick search for Spiral code
-nmap <leader>sc :execute ":vimgrep /" . input("search[modules/]: ") . "/j ~/repo/spiral/modules/**/*.cpp" <Bar> cw<CR>
-nmap <leader>sh :execute ":vimgrep /" . input("search[modules/]: ") . "/j ~/repo/spiral/modules/**/*.h" <Bar> cw<CR>
-
-au BufEnter *.css set nocindent
-au BufLeave *.css set cindent
