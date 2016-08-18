@@ -10,31 +10,45 @@ syntax enable
 "Allow jsx indentation for non-.jsx files
 let g:jsx_ext_required = 0
 
-" Show buffers instead of tabs
-let g:airline#extensions#tabline#enabled = 1
+"" CTRL-P SETTINGS
 
-" Show just the filename
-" let g:airline#extensions#tabline#fnamemod = ':t'
+  " Ignore these files in ctrlP
+  let g:ctrlp_custom_ignore = {
+        \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+        \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+        \}
 
-" This allows buffers to be hidden if you've modified a buffer.
-set hidden
+  " Also ignore anything in a gitignore in the current working directory
+  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
-" To open a new empty buffer
-nmap gN :enew<cr>
+  " Use the nearest .git directory as the cwd
+  let g:ctrlp_working_path_mode = 'r'
 
-" Move to the next buffer
-nmap gn :bnext<CR>
+  nmap bb :CtrlPBuffer<cr>
+  nmap bm :CtrlPMixed<cr>
+  nmap bs :CtrlPMRU<cr>
 
-" Move to the previous buffer
-nmap gb :bprevious<CR>
+""" BUFFERGATOR SETTINGS
 
-" Close the current buffer and move to the previous one
-" This replicates the idea of closing a tab
-nmap gx :bp <BAR> bd #<CR>
+  " Use the right side of the screen
+  let g:buffergator_viewport_split_policy = 'R'
 
-" Show all open buffers and their status
-nmap bl :ls<CR>
+  " Override keymappings
+  let g:buffergator_suppress_keymaps = 1
 
+  " Looper buffers
+  let g:buffergator_mru_cycle_loop = 1
+
+  " Go to the next buffer open
+  nmap gn :BuffergatorMruCycleNext<cr>
+
+  " Go to the previous buffer open
+  nmap gp :BuffergatorMruCyclePrev<cr>
+
+  " View the entire list of buffers open
+  nmap bl :BuffergatorOpen<cr>
+  nmap bn :enew<cr>
+  nmap bq :bp <BAR> bd #<cr>
 
 if filereadable(expand("~/.vim/autoload/plug.vim"))
   call plug#begin()
@@ -44,6 +58,8 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   Plug 'leafgarland/typescript-vim'
   Plug 'Shougo/vimproc.vim', {'do' : 'make'}
   Plug 'vim-airline/vim-airline'
+  Plug 'jeetsukumaran/vim-buffergator'
+  Plug 'ctrlpvim/ctrlp.vim'
 
 	call plug#end()
 
