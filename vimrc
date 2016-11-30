@@ -55,11 +55,15 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
 
   "My bundles:
   Plug 'chriskempson/base16-vim'
+  Plug 'pangloss/vim-javascript'
+  Plug 'mxw/vim-jsx'
   Plug 'leafgarland/typescript-vim'
   Plug 'Shougo/vimproc.vim', {'do' : 'make'}
   Plug 'vim-airline/vim-airline'
   Plug 'jeetsukumaran/vim-buffergator'
   Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'tpope/vim-commentary'
+  Plug 'honza/dockerfile.vim'
 
 	call plug#end()
 
@@ -75,19 +79,23 @@ au! CursorMovedI * checktime
 
 set tabstop=2
 set shiftwidth=2
+set softtabstop=2
+set smarttab
+set expandtab
+
 autocmd BufNewFile,BufRead *.hbs set filetype=html
 autocmd BufNewFile,BufRead *.jsx set filetype=javascript
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType python setlocal shiftwidth=2 tabstop=2
+autocmd BufNewFile,BufRead *Dockerfile* set filetype=dockerfile
+
 
 "turn on search highlighting
 set hls is ic scs
 
 "Turn on language specific indenting
 filetype plugin indent on
-
-"tabs dont automatically convert to spaces
-set expandtab
 
 "search options
 set ignorecase
