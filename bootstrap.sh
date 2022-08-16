@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+w!/usr/bin/env bash
 
 # install homebrew
 if ! command -v brew &> /dev/null
@@ -15,6 +15,10 @@ then
 fi
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+# Add VIMRC
+mkdir -p ~/.config/nvim
+cp init.vim ~/.config/nvim/init.vim 
 
 # install iterm2
 if [[ ! -d /Applications/iTerm.app ]]; then
@@ -36,3 +40,5 @@ if ! command -v omz &> /dev/null
 then	
   KEEP_ZSHRC='yes' sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
+
+cp zshrc ~/.zshrc
