@@ -17,7 +17,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 # install iterm2
-if [[ ! -d /Applications/iiiiTerm.app ]]; then
+if [[ ! -d /Applications/iTerm.app ]]; then
   #brew cask install iterm2
   #curl -L https://iterm2.com/shell_integration/install_shell_integration.sh | bash
   curl -O https://raw.githubusercontent.com/morhetz/gruvbox-contrib/master/iterm2/gruvbox-dark.itermcolors
